@@ -24,6 +24,11 @@ app.get('/', function (request, response) {
   response.render('home', { title: 'My Site' });
 });
 
+app.get('/projects', function (request, response) {
+  response.render('projects', { title: 'My Projects' });
+});
+
+
 // =======================
 // server
 // =======================
