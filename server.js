@@ -24,10 +24,15 @@ app.use(express.static('public'));
 
 app.get('/', function (request, response) {
   var favoriteLetters = ['a', 'b', 'c'];
+  var favoriteLinks = [
+    { text: 'Apple', url: 'http://apple.com' },
+    { text: 'Facebook', url: 'http://facebook.com' }
+  ];
 
   response.render('home', {
     title: 'My Site',
-    favorites: favoriteLetters
+    favorites: favoriteLetters,
+    links: favoriteLinks
   });
 });
 
