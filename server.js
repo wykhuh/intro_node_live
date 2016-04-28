@@ -23,7 +23,12 @@ app.use(express.static('public'));
 // =======================
 
 app.get('/', function (request, response) {
-  response.render('home', { title: 'My Site' });
+  var favoriteLetters = ['a', 'b', 'c'];
+
+  response.render('home', {
+    title: 'My Site',
+    favorites: favoriteLetters
+  });
 });
 
 app.get('/projects', function (request, response) {
