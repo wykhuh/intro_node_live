@@ -1,0 +1,18 @@
+body {
+  padding-top: 50px;
+}
+.repo-list-stats {
+  float: right;
+  margin-top: 6px;
+  font-weight: bold;
+  color: #888;
+}
+
+.repo-list-stat-item {
+   display: inline-block;
+   margin-left: 8px;
+ }
+
+.repo-list-meta {
+  color: #888;
+}
