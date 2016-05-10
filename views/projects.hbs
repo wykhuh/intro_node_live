@@ -1,7 +1,38 @@
 <h1>My Projects</h1>
 
-{{json bio}}
+<div class="row">
+  <div class="col-md-4">
+    <ul class="list-group">
+      <li class="list-group-item"> <img src="{{bio.avatar_url}}" class="img-rounded img-responsive"/></li>
+      <li class="list-group-item">Name: {{bio.name}}</li>
+      <li class="list-group-item">Username: {{bio.login}}</li>
+      <li class="list-group-item">Followers: {{bio.followers}}</li>
+      <li class="list-group-item">Public Repos: {{bio.public_repos}}</li>
+      <li class="list-group-item">Public Gits: {{bio.public_gists}}</li>
+      <li class="list-group-item">Date Joined: {{bio.created_at}}</li>
+    </ul>
+  </div>
 
-<hr>
-
-{{json repos}}
+  <div class="col-md-8">
+    <ul class="list-group">
+      {{#each repos as |repo|}}
+      <li class="list-group-item">
+        <div class="repo-list-stats">
+          <span class="repo-list-stat-item">{{repo.language}}</span>
+          <span class="repo-list-stat-item"><i class="fa fa-star"></i>{{repo.stargazers_count}}</span>
+          <span class="repo-list-stat-item"><i class="fa fa-code-fork"></i>{{repo.forks_count}}</span>
+        </div>
+        <h4>
+          <a href="{{repo.html_url}}">{{repo.name}}</a>
+        </h4>
+        <p>
+          {{repo.description}}
+        </p>
+        <p class="repo-list-meta">
+          {{repo.updated_at}}
+        </p>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
