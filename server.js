@@ -1,9 +1,7 @@
 var express = require('express');
 var app = express();
 var exphbs = require('express-handlebars');
-var axios = require('axios');
-require('dotenv').config();
-
+var githubService = require('./services/githubService.js');
 var port = process.env.PORT || 3000;
 
 // =======================
@@ -45,16 +43,17 @@ app.get('/', function (request, response) {
 });
 
 app.get('/projects', function (request, response) {
-  var options = {
-    headers: {
-      'User-Agent': 'wykhuh',
-      Authorization: 'token ' + process.env.GITHUB_TOKEN
-    }
-  };
-
-  axios.get('https://api.github.com/users/wykhuh', options)
+  githubService.getBio()
     .then(function (results) {
-      response.render('projects', { title: 'My Projects', bio: results.data });
+      response.render('projects',
+        {
+          title: 'My Projects',
+          bio: results.data
+        }
+      );
+    })
+    .catch(function (err) {
+      console.log('err: ', err);
     });
 });
 
