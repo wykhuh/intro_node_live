@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var exphbs = require('express-handlebars');
 var axios = require('axios');
+require('dotenv').config();
+
 var port = process.env.PORT || 3000;
 
 // =======================
@@ -45,7 +47,8 @@ app.get('/', function (request, response) {
 app.get('/projects', function (request, response) {
   var options = {
     headers: {
-      'User-Agent': 'wykhuh'
+      'User-Agent': 'wykhuh',
+      Authorization: 'token ' + process.env.GITHUB_TOKEN
     }
   };
 
@@ -53,10 +56,7 @@ app.get('/projects', function (request, response) {
     .then(function (results) {
       response.render('projects', { title: 'My Projects', bio: results.data });
     });
-
-
 });
-
 
 // =======================
 // server
