@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var exphbs = require('express-handlebars');
+var axios = require('axios');
 var port = process.env.PORT || 3000;
 
 // =======================
@@ -37,6 +38,17 @@ app.get('/', function (request, response) {
 });
 
 app.get('/projects', function (request, response) {
+  var options = {
+    headers: {
+      'User-Agent': 'wykhuh'
+    }
+  };
+
+  axios.get('https://api.github.com/users/wykhuh', options)
+    .then(function (results) {
+      console.log(results.data);
+    });
+
   response.render('projects', { title: 'My Projects' });
 });
 
