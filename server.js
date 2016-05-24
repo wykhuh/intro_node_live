@@ -58,6 +58,17 @@ app.get('/projects', function (request, response) {
     });
 });
 
+app.get('/projects/:id', function (request, response) {
+  var currentProjectName = request.params.id;
+  response.render('project',
+    {
+      title: 'My Projects: ' + currentProjectName,
+      project: { name: currentProjectName }
+    }
+ );
+});
+
+
 // =======================
 // server
 // =======================
