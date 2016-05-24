@@ -9,7 +9,7 @@
       <li class="list-group-item">Followers: {{bio.followers}}</li>
       <li class="list-group-item">Public Repos: {{bio.public_repos}}</li>
       <li class="list-group-item">Public Gits: {{bio.public_gists}}</li>
-      <li class="list-group-item">Date Joined: {{bio.created_at}}</li>
+      <li class="list-group-item">Date Joined: {{formatDate bio.created_at 'MMMM D, YYYY'}}</li>
     </ul>
   </div>
 
