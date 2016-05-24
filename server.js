@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var exphbs = require('express-handlebars');
 var githubService = require('./services/githubService.js');
+var projectInfoService = require('./services/projectInfoService.js');
+
 var port = process.env.PORT || 3000;
 
 // =======================
@@ -58,16 +60,29 @@ app.get('/projects', function (request, response) {
     });
 });
 
-app.get('/projects/:id', function (request, response) {
-  var currentProjectName = request.params.id;
-  response.render('project',
-    {
-      title: 'My Projects: ' + currentProjectName,
-      project: { name: currentProjectName }
-    }
- );
-});
+app.get('/projects/:id', function (req, res) {
+  var currentProjectName = req.params.id;
+  var currentProject = {};
 
+  projectInfoService.readFile(currentProjectName, function (err, results) {
+    if (err) {
+      currentProject = {
+        post: currentProjectName + ' is invalid project name.'
+      };
+    } else {
+      currentProject = {
+        name: currentProjectName,
+        post: results,
+        url: 'https://github.com/your_username/' + currentProjectName
+      };
+    }
+
+    res.render('project', {
+      title: 'My Project: ' + currentProjectName,
+      project: currentProject
+    });
+  });
+});
 
 // =======================
 // server
