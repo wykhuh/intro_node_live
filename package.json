@@ -10,10 +10,15 @@
     "express-handlebars": "^3.0.0",
     "moment": "^2.13.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^2.10.2",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.8.0"
+  },
   "scripts": {
     "start": "NODE_ENV=production node server.js",
-    "dev": "NODE_ENV=development nodemon server.js"
+    "dev": "NODE_ENV=development nodemon server.js",
+    "lint": "node_modules/.bin/eslint ."
   },
   "keywords": [],
   "author": "",

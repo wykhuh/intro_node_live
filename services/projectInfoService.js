@@ -14,7 +14,7 @@ var projectInfoService = function () {
     var filePath = path.join(__dirname, '../data', repoName + '.html');
 
     try {
-      return fs.statSync(filePath).isFile()
+      return fs.statSync(filePath).isFile();
     } catch (err) {
       return false;
     }
