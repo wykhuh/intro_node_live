@@ -22,7 +22,8 @@ app.engine('hbs', exphbs({
       return JSON.stringify(context);
     },
     formatDate: dateFormatService.formatDate,
-    formatRelativeDate: dateFormatService.formatRelativeDate
+    formatRelativeDate: dateFormatService.formatRelativeDate,
+    currentYear: dateFormatService.currentYear
   }
 }));
 

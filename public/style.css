@@ -16,3 +16,21 @@ body {
 .repo-list-meta {
   color: #888;
 }
+
+/* sticky footer begin */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#main {
+  flex: 1;
+}
+
+.footer {
+  background-color: #f5f5f5;
+  text-align: center;
+  padding: 15px;
+}
+/* sticky footer end */

@@ -14,9 +14,14 @@ var dateFormatService = function () {
     }
   }
 
+  function currentYear() {
+    return moment().year();
+  }
+
   return {
     formatDate: formatDate,
-    formatRelativeDate: formatRelativeDate
+    formatRelativeDate: formatRelativeDate,
+    currentYear: currentYear
   };
 };
 
