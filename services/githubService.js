@@ -16,14 +16,15 @@ var githubService = function () {
     return axios.get('https://api.github.com/users/' + username, options);
   }
 
-  function getRepos(username) {
+  function getRepos(username, currentPage) {
+    var page = currentPage || 1;
     return axios.get(
-      'https://api.github.com/users/' + username + '/repos', options
+      'https://api.github.com/users/' + username + '/repos?page=' + page, options
     );
   }
 
-  function githubInfo(username) {
-    return axios.all([getRepos(username), getBio(username)])
+  function githubInfo(username, currentPage) {
+    return axios.all([getRepos(username, currentPage), getBio(username)])
       .then(function (results) {
         var repos = results[0].data;
         var bio = results[1].data;
