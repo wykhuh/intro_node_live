@@ -20,7 +20,8 @@ app.engine('hbs', exphbs({
     json: function (context) {
       return JSON.stringify(context);
     },
-    formatDate: dateFormatService.formatDate
+    formatDate: dateFormatService.formatDate,
+    formatRelativeDate: dateFormatService.formatRelativeDate
   }
 }));
 
