@@ -3,7 +3,7 @@ var app = express();
 var exphbs = require('express-handlebars');
 var githubService = require('./services/githubService.js');
 var projectInfoService = require('./services/projectInfoService.js');
-var moment = require('moment');
+var dateFormatService = require('./services/dateFormatService.js');
 
 var port = process.env.PORT || 3000;
 
@@ -20,9 +20,7 @@ app.engine('hbs', exphbs({
     json: function (context) {
       return JSON.stringify(context);
     },
-    formatDate: function (date, format) {
-      return moment(date).format(format);
-    }
+    formatDate: dateFormatService.formatDate
   }
 }));
 
