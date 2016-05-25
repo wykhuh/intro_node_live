@@ -4,6 +4,7 @@ var exphbs = require('express-handlebars');
 var githubService = require('./services/githubService.js');
 var projectInfoService = require('./services/projectInfoService.js');
 var dateFormatService = require('./services/dateFormatService.js');
+var paginationService = require('./services/paginationService.js');
 
 var port = process.env.PORT || 3000;
 
@@ -48,8 +49,16 @@ app.get('/', function (request, response) {
 });
 
 app.get('/projects', function (request, response) {
-  githubService.githubInfo()
+  var currentPage = request.query.page || 1;
+
+  githubService.githubInfo(currentPage)
     .then(function (results) {
+      var options = {
+        total: results.bio.public_repos,
+        perPage: 30,
+        url: '/projects?page=',
+        currentPage: currentPage
+      };
 
       var repos = results.repos;
       repos.forEach(function (repo, index) {
@@ -60,7 +69,8 @@ app.get('/projects', function (request, response) {
         {
           title: 'My Projects',
           bio: results.bio,
-          repos: results.repos
+          repos: results.repos,
+          paginationLinks: paginationService.getLinks(options)
         }
       );
     })

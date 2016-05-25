@@ -41,5 +41,11 @@
       </li>
       {{/each}}
     </ul>
+
+    <ul class="pagination">
+      {{#each paginationLinks as |link|}}
+      <li {{#if link.active}}class="active"{{/if}}><a href="{{link.url}}">{{link.text}}</a></li>
+      {{/each}}
+    </ul>
   </div>
 </div>
