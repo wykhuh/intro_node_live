@@ -3,6 +3,7 @@ var app = express();
 var exphbs = require('express-handlebars');
 var githubService = require('./services/githubService.js');
 var projectInfoService = require('./services/projectInfoService.js');
+var paginationService = require('./services/paginationService.js');
 var moment = require('moment');
 
 var port = process.env.PORT || 3000;
@@ -57,33 +58,12 @@ app.get('/projects', function (request, response) {
         repos[index].hasPost = projectInfoService.fileExists(repo.name);
       });
 
-      function getPageCount(total, perPage) {
-        return Math.ceil(total / perPage);
-      }
-
-      function range(number) {
-        var i;
-        var nums = [];
-        for (i = 1; i <= number; i++) {
-          nums.push(i);
-        }
-        return nums;
-      }
-
-      function createLinks() {
-        var pageCount = getPageCount(results.bio.public_repos, 30);
-        var pages = range(pageCount);
-
-        return pages.map(function (page) {
-          return { url: 'https://api.github.com/wykhuh/repos?page=' + page, text: page };
-        });
-      }
 
       response.render('projects',
         {
           title: 'My Projects',
           bio: results.bio,
-          paginationLinks: createLinks(),
+          paginationLinks: paginationService.createLinks(results.bio.public_repos),
           repos: results.repos
         }
       );
