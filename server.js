@@ -50,7 +50,9 @@ app.get('/', function (request, response) {
 });
 
 app.get('/projects', function (request, response) {
-  githubService.githubInfo()
+  var page = request.query.page;
+
+  githubService.githubInfo(page)
     .then(function (results) {
 
       var repos = results.repos;

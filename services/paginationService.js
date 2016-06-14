@@ -18,7 +18,8 @@ var paginationService = function() {
     var pages = range(pageCount);
 
     return pages.map(function (page) {
-      return { url: 'https://api.github.com/users/wykhuh/repos?page=' + page, text: page };
+      //  url: 'https://api.github.com/users/wykhuh/repos?page=
+      return { url: '/projects?page=' + page, text: page };
     });
   }
 
