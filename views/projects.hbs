@@ -1,7 +1,5 @@
 <h1>My Projects</h1>
 
-{{json paginationLinks}}
-
 <div class="row">
   <div class="col-md-4">
     <ul class="list-group">
@@ -44,4 +42,21 @@
       {{/each}}
     </ul>
   </div>
+
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    {{#each paginationLinks as |link|}}
+    <li><a href="{{link.url}}">{{link.text}}</a></li>
+    {{/each}}
+
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
 </div>
