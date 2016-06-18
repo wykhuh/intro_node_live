@@ -1,9 +1,13 @@
 var paginationService = function() {
 
+  // get the total number of pages
   function getPageCount(total, perPage) {
+    // use ceiling not round because I want it to round up
     return Math.ceil(total / perPage);
   }
 
+
+  // create an array of page numbers
   function range(number) {
     var i;
     var nums = [];
@@ -13,6 +17,7 @@ var paginationService = function() {
     return nums;
   }
 
+  // create link for each page number
   function createLinks(total) {
     var pageCount = getPageCount(total, 30);
     var pages = range(pageCount);
